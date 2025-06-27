@@ -1,67 +1,75 @@
 import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { categoryTags } from './Donuts'; // Import only category tags
+import { categoryTags } from './Donuts';
+import '../App.css';
 
-const Navbar = ({ cartItemCount }) => {
+const Navbar = ({ cartItemCount = 0 }) => {
   const navigate = useNavigate();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
-      <div className="container">
-        <Link className="navbar-brand d-flex align-items-center" to="/">
-          <i className="bi bi-basket2-fill me-2 fs-3 text-danger"></i>
-          <span className="fw-bold fs-4">DonutShop</span>
-        </Link>
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top position-relative"
+      style={{ height: '70px' }}
+    >
+      <div className="container d-flex justify-content-between align-items-center position-relative">
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-          aria-controls="navbarContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <div className="d-flex align-items-center">
+          <Link to="/" className="navbar-logo me-3">
+            <img src="/logo.png" alt="Logo Icon" style={{ height: '60px' }} />
+          </Link>
 
-        <div className="collapse navbar-collapse" id="navbarContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav d-flex flex-row gap-3 mb-0">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/donuts" className="nav-link hover-pink">
                 All Donuts
               </NavLink>
             </li>
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                onClick={(e) => e.preventDefault()}
-              >
-                Categories
-              </a>
-              <ul className="dropdown-menu">
-                {categoryTags.map((tag, index) => (
-                  <li key={index}>
-                    <Link to={`/category/${tag}`} className="dropdown-item">
-                      {tag}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <li className="nav-item dropdown position-static">
+              <div className="dropdown-hover">
+                <a
+                  className="nav-link dropdown-toggle hover-pink"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Categories
+                </a>
+                <ul className="dropdown-menu show-on-hover" aria-labelledby="navbarDropdown">
+                  {categoryTags.map((tag, idx) => (
+                    <li key={idx}>
+                      <Link to={`/category/${tag}`} className="dropdown-item hover-pink">
+                        {tag}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
           </ul>
+        </div>
 
+        <div
+          className="navbar-center position-absolute top-50 start-50 translate-middle"
+        >
+          <Link to="/" className="d-inline-block">
+            <img src="/name.png" alt="DonutShop Logo" style={{ height: '60px' }} />
+          </Link>
+        </div>
+
+        <div className="d-flex align-items-center">
+          <i
+            className="bi bi-search fs-4 mx-3 text-pink"
+            style={{ cursor: 'pointer' }}
+            title="Search"
+          ></i>
           <div
-            className="d-flex align-items-center position-relative"
+            className="position-relative text-pink"
             style={{ cursor: 'pointer' }}
             onClick={() => navigate('/cart')}
           >
-            <i className="bi bi-cart-fill fs-4 text-danger"></i>
+            <i className="bi bi-cart-fill fs-4"></i>
             {cartItemCount > 0 && (
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {cartItemCount}
@@ -69,6 +77,7 @@ const Navbar = ({ cartItemCount }) => {
             )}
           </div>
         </div>
+
       </div>
     </nav>
   );

@@ -37,3 +37,27 @@
   }
 }
 
+.navbar {
+  height: 80px; /* Increase navbar height */
+}
+
+.navbar-logo img,
+.navbar-center img {
+  height: 80px; /* Bigger logos */
+}
+
+.hover-pink:hover {
+  color: #e83e8c !important;
+}
+
+.text-pink {
+  color: #e83e8c !important;
+}
+
+.dropdown-hover:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  margin-top: 0;
+}

@@ -1,5 +1,6 @@
 export const categoryTags = ["Seasonal", "Fruity", "Classic"];
 export const filterTags = ["Seasonal", "Fruity", "Chocolate", "Classic", "Nuts", "Gluten", "Dairy", "Sugar-Free"];
+export const seasonalTags = ["Summer", "Fall", "Sanrio", "Matcha"]
 
 const donuts = [
 

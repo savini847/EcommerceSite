@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 const DonutCard = ({ donut }) => {
   return (
     <Link to={`/donut/${donut.id}`} className="text-decoration-none text-dark">
-      <div className="card h-100 shadow-sm">
+      <div className="card h-100 shadow-sm" style={{ backgroundColor: '#fff0fa' }}>
         <img
             src={donut.image}
             alt={donut.name}
             className="card-img-top"
-            style={{ height: '200px', width: '100%', objectFit: 'contain', padding: '10px' }}
+            style={{ height: '200px', width: '100%', objectFit: 'contain', padding: '10px'}}
         />
 
         <div className="card-body d-flex flex-column justify-content-between">
