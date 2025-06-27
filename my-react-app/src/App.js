@@ -1,28 +1,27 @@
-// src/App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
 
 import React from 'react';
-import donuts from './components/Donuts';  // Import the donuts data
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DonutGrid from './components/DonutGrid';
+import DonutDetail from './components/DonutDetail';
+import CategoryPage from './components/CategoryPage';
+import Navbar from './components/Navbar'
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <header style={styles.header}>
-        <h1>Donut Shop</h1>
-      </header>
-      <DonutGrid donuts={donuts} />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<DonutGrid />} />
+        <Route path="/donut/:id" element={<DonutDetail />} />
+        <Route path="/category/:tag" element={<CategoryPage />} />
+      </Routes>
+    </Router>
   );
-}
-
-const styles = {
-  header: {
-    backgroundColor: '#ff6f61',
-    color: 'white',
-    padding: '20px 0',
-    textAlign: 'center',
-    fontFamily: 'Arial, sans-serif',
-  }
 };
 
 export default App;

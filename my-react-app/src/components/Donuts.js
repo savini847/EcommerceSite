@@ -1,3 +1,6 @@
+export const categoryTags = ["Seasonal", "Fruity", "Classic"];
+export const filterTags = ["Seasonal", "Fruity", "Chocolate", "Classic", "Nuts", "Gluten", "Dairy", "Sugar-Free"];
+
 const donuts = [
 
     {
@@ -5,7 +8,7 @@ const donuts = [
         name: "Chocolate Almond",
         image: "/donuts/almondchoco.png",
         price: 4.50,
-        description: ".",
+        description: "Donut with chocolate icing, covered in almonds.",
         tags: ["Chocolate", "Nuts"],
     },
 
@@ -14,7 +17,7 @@ const donuts = [
         name: "Blue Sprinkles",
         image: "/donuts/blue.png",
         price: 4.50,
-        description: "Vanilla with blue and white sprinkles.",
+        description: "Vanilla donut with blue and white sprinkles.",
         tags: ["Sprinkles"],
     },
 
@@ -24,7 +27,7 @@ const donuts = [
         image: "/donuts/blueberry.png",
         price: 4.50,
         description: "Donut with blueberry glaze, perfect for the summer.",
-        tags: ["Fruit", "Summer", "Seasonal"],
+        tags: ["Fruity", "Summer", "Seasonal"],
     },
 
 
@@ -33,8 +36,8 @@ const donuts = [
         name: "Nutty Blueberry",
         image: "/donuts/bluenut.png",
         price: 4.50,
-        description: "Blueberry icing with nuts.",
-        tags: ["Fruit", "Nuts"],
+        description: "Blueberry iced donut, sprinkled with nut topping.",
+        tags: ["Fruity", "Nuts"],
     },
 
 
@@ -82,7 +85,7 @@ const donuts = [
         image: "/donuts/cinnamonapple.png",
         price: 4.50,
         description: "A delicious donut filled with apple cinnamon filling, perfect for Fall.",
-        tags: ["CreamFilled", "Seasonal", "Fall", "Fruit"],
+        tags: ["CreamFilled", "Seasonal", "Fall", "Fruity"],
     },
 
     {
@@ -127,7 +130,7 @@ const donuts = [
         image: "/donuts/classicstrawberrysprinkle.png",
         price: 4.50,
         description: "Our classic strawberry sprinkle donut.",
-        tags: ["Classic", "Sprinkle", "Fruit"],
+        tags: ["Classic", "Sprinkle", "Fruity"],
     },
 
     {
@@ -145,7 +148,7 @@ const donuts = [
         image: "/donuts/glazedblueberry.png",
         price: 4.50,
         description: "Classic blueberry donut.",
-        tags: ["Fruit", "Classic"],
+        tags: ["Fruity", "Classic"],
     },
 
     {
@@ -235,7 +238,7 @@ const donuts = [
         image: "/donuts/matchalemon.png",
         price: 4.50,
         description: ".",
-        tags: ["Seasonal", "Summer", "Fruit", "Matcha"],
+        tags: ["Seasonal", "Summer", "Fruity", "Matcha"],
     },
 
     {
@@ -289,7 +292,7 @@ const donuts = [
         image: "/donuts/orange.png",
         price: 4.50,
         description: ".",
-        tags: ["Fruit", "Seasonal", "Summer"],
+        tags: ["Fruity", "Seasonal", "Summer"],
     },
 
     {
@@ -298,7 +301,7 @@ const donuts = [
         image: "/donuts/orangelemon.png",
         price: 4.50,
         description: ".",
-        tags: ["Fruit", "Seasonal", "Summer"],
+        tags: ["Fruity", "Seasonal", "Summer"],
 
     },
 
@@ -335,7 +338,7 @@ const donuts = [
         image: "/donuts/pinkraspberry.png",
         price: 4.50,
         description: ".",
-        tags: ["Fruit", "Seasonal", "Summer"],
+        tags: ["Fruity", "Seasonal", "Summer"],
     },
 
     {
@@ -353,7 +356,7 @@ const donuts = [
         image: "/donuts/powdered.png",
         price: 4.50,
         description: "Classic powdered donut with raspberry filling.",
-        tags: ["Classic", "Fruit", "CreamFilled"],
+        tags: ["Classic", "Fruity", "CreamFilled"],
     },
 
     {
@@ -371,7 +374,7 @@ const donuts = [
         image: "/donuts/raspberry.png",
         price: 4.50,
         description: ".",
-        tags: ["Fruit", ""],
+        tags: ["Fruity", ""],
     },
 
     {
@@ -380,7 +383,7 @@ const donuts = [
         image: "/donuts/raspberrychoco.png",
         price: 4.50,
         description: ".",
-        tags: ["Fruit", ""],
+        tags: ["Fruity", ""],
     },
 
     {
@@ -443,7 +446,7 @@ const donuts = [
         image: "/donuts/summerstrawberry.png",
         price: 4.50,
         description: ".",
-        tags: ["Seasonal", "Summer", "Fruit"], 
+        tags: ["Seasonal", "Summer", "Fruity"], 
     },
 
     {

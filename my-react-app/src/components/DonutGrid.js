@@ -1,26 +1,21 @@
-// src/components/DonutGrid.js
-
 import React from 'react';
 import DonutCard from './DonutCard';
+import allDonuts from './Donuts';
 
 const DonutGrid = ({ donuts }) => {
+  const donutsToShow = donuts || allDonuts;
+
   return (
-    <div style={styles.gridContainer}>
-      {donuts.map(donut => (
-        <DonutCard key={donut.id} donut={donut} />
-      ))}
+    <div className="container py-4">
+      <div className="row g-4 justify-content-center">
+        {donutsToShow.map(donut => (
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={donut.id}>
+            <DonutCard donut={donut} />
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
-
-const styles = {
-  gridContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#f8f8f8',
-  }
 };
 
 export default DonutGrid;
