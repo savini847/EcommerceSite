@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+
+import React from 'react';
+import donuts from './components/Donuts';  // Import the donuts data
+import DonutGrid from './components/DonutGrid';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header style={styles.header}>
+        <h1>Donut Shop</h1>
       </header>
+      <DonutGrid donuts={donuts} />
     </div>
   );
 }
+
+const styles = {
+  header: {
+    backgroundColor: '#ff6f61',
+    color: 'white',
+    padding: '20px 0',
+    textAlign: 'center',
+    fontFamily: 'Arial, sans-serif',
+  }
+};
 
 export default App;
