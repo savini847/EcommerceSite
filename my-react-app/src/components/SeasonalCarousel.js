@@ -8,7 +8,7 @@ function IndividualIntervalsExample() {
   return (
     <Carousel>
 
-      <Carousel.Item interval={4000}>
+      <Carousel.Item interval={2500}>
         <img
           className="d-block w-100"
           src="/banner.png"
@@ -25,7 +25,7 @@ function IndividualIntervalsExample() {
         </Carousel.Caption>
       </Carousel.Item>
 
-      <Carousel.Item interval={3000}>
+      <Carousel.Item interval={2500}>
         <img
           className="d-block w-100"
           src="/summerbanner.png"
@@ -43,7 +43,7 @@ function IndividualIntervalsExample() {
         </Carousel.Caption>
       </Carousel.Item>
 
-      <Carousel.Item interval={3000}>
+      <Carousel.Item interval={2500}>
         <img
           className="d-block w-100"
           src="/sanriobanner.png"
@@ -61,7 +61,7 @@ function IndividualIntervalsExample() {
         </Carousel.Caption>
       </Carousel.Item>
 
-      <Carousel.Item interval={3000}>
+      <Carousel.Item interval={2500}>
         <img
           className="d-block w-100"
           src="/matchabanner.png"

@@ -1,10 +1,11 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import donuts, { categoryTags } from './Donuts';
 import DonutCarousel from './DonutCarousel';
 
 const DonutDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const donut = donuts.find(d => d.id === parseInt(id));
 
   if (!donut) return <p>Donut not found</p>;
@@ -13,7 +14,9 @@ const DonutDetail = () => {
 
   return (
     <div className="container py-5">
-      <Link to="/" className="btn btn-outline-secondary mb-4">← Back</Link>
+      <button className="btn btn-outline-secondary mb-4" onClick={() => navigate(-1)}>
+        ← Back
+      </button>
 
       <div className="row align-items-center mb-5">
         <div className="col-md-6">
