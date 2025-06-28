@@ -15,7 +15,7 @@ const DonutCard = ({ donut }) => {
         <div className="card-body d-flex flex-column justify-content-between">
           <h5 className="card-title text-center">{donut.name || "No Name"}</h5>
           <div className="text-center mt-3">
-            <span className="btn btn-outline-primary disabled">
+            <span className="btn btn-outline-primary">
               ${donut.price.toFixed(2)}
             </span>
           </div>

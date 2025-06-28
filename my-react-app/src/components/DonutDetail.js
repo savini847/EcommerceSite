@@ -29,8 +29,10 @@ const DonutDetail = () => {
           )}
         </div>
       </div>
+
         <h3 className="text-center mb-4">Discover More {categoryTag} Donuts</h3>
         <DonutCarousel currentId={donut.id} tag={categoryTag} />
+
     </div>
   );
 };

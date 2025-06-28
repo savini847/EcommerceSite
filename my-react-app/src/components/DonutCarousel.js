@@ -16,15 +16,21 @@ const DonutCarousel = ({ currentId, tag }) => {
     : getRandomDonuts();
 
   return (
-    <div className="text-center">
+    <div
+      className="card shadow-sm p-4 mb-5"
+      style={{
+        backgroundColor: '#fff0fa',
+        border: '1px solid #f4c2d7'
+      }}
+    >
       <div
         className="d-flex gap-3 overflow-auto"
-        style={{ 
+        style={{
           justifyContent: 'start',
           paddingLeft: '1rem',
           paddingRight: '1rem',
           scrollSnapType: 'x mandatory',
-          WebkitOverflowScrolling: 'touch' 
+          WebkitOverflowScrolling: 'touch'
         }}
       >
         {filtered.map((d, index) => (
@@ -50,9 +56,14 @@ const DonutCarousel = ({ currentId, tag }) => {
                 padding: '10px',
               }}
             />
-            <div className="card-body text-center">
-              <h6 className="card-title">{d.name || 'Unnamed'}</h6>
+          <div className="card-body text-center d-flex flex-column justify-content-between">
+            <h6 className="card-title">{d.name || 'Unnamed'}</h6>
+            <div className="mt-2">
+              <span className="btn btn-outline-primary">
+                ${d.price.toFixed(2)}
+              </span>
             </div>
+          </div>
           </div>
         ))}
       </div>
