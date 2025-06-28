@@ -8,9 +8,7 @@ const DonutDetail = () => {
   const navigate = useNavigate();
   const donut = donuts.find(d => d.id === parseInt(id));
 
-  if (!donut) return <p>Donut not found</p>;
-
-  const categoryTag = donut.tags.find(tag => categoryTags.includes(tag)) || "Featured";
+  const categoryTag = donut.tags?.find(tag => categoryTags.includes(tag));
 
   return (
     <div className="container py-5">
@@ -26,12 +24,13 @@ const DonutDetail = () => {
           <h2>{donut.name}</h2>
           <p>{donut.description || "No description available."}</p>
           <h4>${donut.price.toFixed(2)}</h4>
-          <p className="text-muted">Tags: {donut.tags.join(", ")}</p>
+          {donut.tags?.length > 0 && (
+            <p className="text-muted">Tags: {donut.tags.join(", ")}</p>
+          )}
         </div>
       </div>
-
-      <h3 className="text-center mb-4">Discover More {categoryTag} Donuts</h3>
-      <DonutCarousel currentId={donut.id} tag={categoryTag} />
+        <h3 className="text-center mb-4">Discover More {categoryTag} Donuts</h3>
+        <DonutCarousel currentId={donut.id} tag={categoryTag} />
     </div>
   );
 };

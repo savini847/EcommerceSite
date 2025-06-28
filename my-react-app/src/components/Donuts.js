@@ -1,4 +1,4 @@
-export const categoryTags = ["Seasonal", "Fruity", "Classic"];
+export const categoryTags = ["Seasonal", "Fruity", "Classic", "Bestsellers"];
 export const filterTags = ["Seasonal", "Fruity", "Chocolate", "Classic", "Nuts", "Gluten", "Dairy", "Sugar-Free"];
 export const seasonalTags = ["Summer", "Fall", "Sanrio", "Matcha"]
 
@@ -113,7 +113,7 @@ const donuts = [
         image: "/donuts/classicmatcha.png",
         price: 4.50,
         description: "Matcha donut covered in matcha creme glaze.",
-        tags: ["Matcha"],
+        tags: ["Matcha", "Bestsellers"],
     },
 
     {
@@ -140,7 +140,7 @@ const donuts = [
         image: "/donuts/fullchoco.png",
         price: 4.50,
         description: "A chocolate donut with chocolate glaze and sprinkles.",
-        tags: ["Chocolate"],
+        tags: ["Chocolate", "Bestsellers"],
     },
 
     {
@@ -167,7 +167,7 @@ const donuts = [
         image: "/donuts/heartshape.png",
         price: 4.50,
         description: ".",
-        tags: ["Seasonal", "Valentine"],
+        tags: ["Seasonal", "Valentine", "Bestsellers"],
     },
 
     {
@@ -203,16 +203,16 @@ const donuts = [
         image: "/donuts/matchacrumble.png",
         price: 4.50,
         description: ".",
-        tags: ["Matcha"],
+        tags: ["Matcha", "Bestsellers"],
     },
 
     {
         id: 23, 
-        name: "Matcha FLower",
+        name: "Matcha Flower",
         image: "/donuts/matchaflower.png",
         price: 4.50,
         description: ".",
-        tags: ["Matcha", ""],
+        tags: ["Matcha"],
     },
 
     {
@@ -226,11 +226,11 @@ const donuts = [
 
     {
         id: 25, 
-        name: "",
+        name: "Almond Matcha",
         image: "/donuts/matchaicing.png",
         price: 4.50,
         description: ".",
-        tags: ["", ""],
+        tags: ["Matcha", ""],
     },
 
     {
@@ -317,11 +317,11 @@ const donuts = [
 
     {
         id: 35, 
-        name: "",
+        name: "Cookies and Cream",
         image: "/donuts/oreochoco.png",
         price: 4.50,
         description: ".",
-        tags: ["Chocolate", "Oreo", "Seasonal"],
+        tags: ["Chocolate", "Oreo", "Seasonal", "Bestsellers"],
     },
 
     {
@@ -348,7 +348,7 @@ const donuts = [
         image: "/donuts/polkadot.png",
         price: 4.50,
         description: ".",
-        tags: ["Chocolate", ""],
+        tags: ["Chocolate", "Bestsellers"],
     },
 
     {
@@ -380,29 +380,29 @@ const donuts = [
 
     {
         id: 42, 
-        name: "",
+        name: "Raspberry Choco Cream",
         image: "/donuts/raspberrychoco.png",
+        price: 4.50,
+        description: ".",
+        tags: ["Fruity", "Bestsellers"],
+    },
+
+    {
+        id: 43, 
+        name: "Rasberry Delight",
+        image: "/donuts/raspberryfilled.png",
         price: 4.50,
         description: ".",
         tags: ["Fruity", ""],
     },
 
     {
-        id: 43, 
-        name: "",
-        image: "/donuts/raspberryfilled.png",
-        price: 4.50,
-        description: ".",
-        tags: ["", ""],
-    },
-
-    {
         id: 44, 
-        name: "",
+        name: "Strawberry Vanilla",
         image: "/donuts/raspberryglaze.png",
         price: 4.50,
         description: ".",
-        tags: ["", ""],
+        tags: ["Fruity", ""],
     },
 
     {
@@ -411,7 +411,7 @@ const donuts = [
         image: "/donuts/raspberryvanilla.png",
         price: 4.50,
         description: ".",
-        tags: ["", ""],
+        tags: ["Fruity", ""],
     },
 
     {
@@ -429,7 +429,7 @@ const donuts = [
         image: "/donuts/sanrio1.png",
         price: 4.50,
         description: ".",
-        tags: ["Seasonal", "Sanrio"],
+        tags: ["Seasonal", "Sanrio", "Bestsellers"],
     },
 
     {
@@ -438,7 +438,7 @@ const donuts = [
         image: "/donuts/sanrio2.png",
         price: 4.50,
         description: ".",
-        tags: ["Seasonal", "Sanrio"],
+        tags: ["Seasonal", "Sanrio", "Fruity"],
     },
 
     {
@@ -447,7 +447,7 @@ const donuts = [
         image: "/donuts/summerstrawberry.png",
         price: 4.50,
         description: ".",
-        tags: ["Seasonal", "Summer", "Fruity"], 
+        tags: ["Seasonal", "Summer", "Fruity", "Bestsellers"], 
     },
 
     {

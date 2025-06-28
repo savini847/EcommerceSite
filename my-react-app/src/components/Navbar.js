@@ -8,8 +8,8 @@ const Navbar = ({ cartItemCount = 0 }) => {
 
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top position-relative"
-      style={{ height: '70px' }}
+      className="navbar navbar-expand-lg navbar-light shadow-sm sticky-top position-relative"
+      style={{ height: '70px', backgroundColor: '#fff0fa'}}
     >
       <div className="container d-flex justify-content-between align-items-center position-relative">
 
@@ -54,7 +54,7 @@ const Navbar = ({ cartItemCount = 0 }) => {
           className="navbar-center position-absolute top-50 start-50 translate-middle"
         >
           <Link to="/" className="d-inline-block">
-            <img src="/name.png" alt="DonutShop Logo" style={{ height: '60px' }} />
+            <img src="/name.png" alt="The Donut Atelier" style={{ height: '60px' }} />
           </Link>
         </div>
 
