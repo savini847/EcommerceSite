@@ -12,7 +12,7 @@ const CategoryPage = () => {
 
   return (
     <div className="container mt-4 text-center">
-      <h2>{tag} Donuts</h2>
+      <h2>{tag}</h2>
       <DonutGrid donuts={filteredDonuts} />
     </div>
   );

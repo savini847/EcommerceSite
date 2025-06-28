@@ -33,8 +33,7 @@ function IndividualIntervalsExample() {
           style={{ objectFit: 'cover'}}
         />
         <Carousel.Caption>
-          <h1>Summer Donuts</h1>
-          <h3>Fresh, fruity flavors perfect for the sunny season!</h3>
+          <h2>Fresh, fruity flavors perfect for the sunny season!</h2>
           <Link to="/category/Summer">
             <Button variant="outline-secondary" className="mt-2">
               Shop Summer Donuts

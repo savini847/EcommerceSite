@@ -72,7 +72,7 @@ const donuts = [
 
     {
         id: 8, 
-        name: "",
+        name: "Chocolate Sprinkles",
         image: "/donuts/chocosprinkles.png",
         price: 4.50,
         description: "",
@@ -127,7 +127,7 @@ const donuts = [
 
     {
         id: 14, 
-        name: "Strawberry Sprinkle",
+        name: "Strawberry Sprinkles",
         image: "/donuts/classicstrawberrysprinkle.png",
         price: 4.50,
         description: "Our classic strawberry sprinkle donut.",

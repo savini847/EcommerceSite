@@ -9,6 +9,7 @@ import HomePage from './components/HomePage';
 import DonutGrid from './components/DonutGrid';
 import DonutDetail from './components/DonutDetail';
 import CategoryPage from './components/CategoryPage';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -22,6 +23,9 @@ const App = () => {
         <Route path="/category/:tag" element={<CategoryPage />} />
 
       </Routes>
+
+      <Footer />
+
     </Router>
   );
 };

@@ -11,6 +11,7 @@ const HomePage = () => {
         <h2 className="text-center mb-4">Check Out Our Bestsellers!</h2>
         <DonutCarousel currentId={-1} tag="Bestsellers" />
       </div>
+
     </>
   );
 };
