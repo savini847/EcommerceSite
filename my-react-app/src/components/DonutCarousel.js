@@ -58,11 +58,11 @@ const DonutCarousel = ({ currentId, tag }) => {
             />
           <div className="card-body text-center d-flex flex-column justify-content-between">
             <h6 className="card-title">{d.name || 'Unnamed'}</h6>
-            <div className="mt-2">
+{/* {            <div className="mt-2">
               <span className="btn btn-outline-primary">
                 ${d.price.toFixed(2)}
               </span>
-            </div>
+            </div>} */}
           </div>
           </div>
         ))}
