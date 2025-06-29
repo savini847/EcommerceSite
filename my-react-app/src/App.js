@@ -10,25 +10,33 @@ import DonutGrid from './components/DonutGrid';
 import DonutDetail from './components/DonutDetail';
 import CategoryPage from './components/CategoryPage';
 import Footer from './components/Footer';
+import { CartProvider } from './context/CartContext';
+import Cart from './components/Cart';
+import SearchPage from './components/SearchPage'; 
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-      
-        <Route path="/" element={<HomePage />} />
-        <Route path="/donuts" element={<DonutGrid />} /> 
-        <Route path="/donut/:id" element={<DonutDetail />} />
-        <Route path="/category/:tag" element={<CategoryPage />} />
-
-      </Routes>
-
-      <Footer />
-
-    </Router>
+    <CartProvider>
+      <Router>
+        <div className="d-flex flex-column min-vh-100">
+          <Navbar />
+          <Cart />
+          <main className="flex-grow-1" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/donuts" element={<DonutGrid />} />
+                <Route path="/donut/:id" element={<DonutDetail />} />
+                <Route path="/category/:tag" element={<CategoryPage />} />
+                <Route path="/search" element={<SearchPage />} /> 
+              </Routes>
+            </div>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </CartProvider>
   );
 };
 
 export default App;
-

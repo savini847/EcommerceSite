@@ -38,12 +38,12 @@
 }
 
 .navbar {
-  height: 80px; /* Increase navbar height */
+  height: 80px; 
 }
 
 .navbar-logo img,
 .navbar-center img {
-  height: 80px; /* Bigger logos */
+  height: 80px; 
 }
 
 .hover-pink:hover {
@@ -60,4 +60,156 @@
 
 .dropdown-menu {
   margin-top: 0;
+}
+
+.add-to-cart-btn {
+  transition: all 0.3s ease;
+  background-color: #eee !important; 
+  border-color: black !important;
+  color: black !important;
+}
+
+
+.add-to-cart-btn:hover {
+  background-color: #e83e8c !important;
+  border-color: #e83e8c !important;
+  color: white !important;
+}
+
+/* Cart Styles */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cart-sidebar {
+  width: 350px;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cart-items {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.cart-footer {
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+
+.badge.bg-pink {
+  background-color: #ffe0f0 !important; 
+  color: #333 !important; 
+  font-weight: normal;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 12px;
+}
+
+
+.tag, .tags span, .badge {
+  color: #333 !important; 
+}
+
+
+.badge.bg-pink:hover {
+  background-color: #ffcce6 !important;
+}
+
+
+@media (max-width: 576px) {
+  .cart-sidebar {
+    width: 100%;
+  }
+}
+
+/* Add these to your existing App.css */
+
+.search-container {
+  z-index: 1000;
+}
+
+.search-results {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search-result-item {
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+  background-color: #fff0fa;
+}
+
+/* Add responsive styles */
+@media (max-width: 768px) {
+  .search-container {
+    position: fixed !important;
+    top: 70px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #fff0fa;
+  }
+  
+  .search-container input {
+    width: 100% !important;
+  }
+  
+  .search-results {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    max-height: calc(100vh - 120px);
+  }
+}
+/* Search Dropdown Styles */
+.search-dropdown {
+  z-index: 1050;
+}
+
+.search-results-container {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+}
+
+.search-result-item {
+  transition: all 0.2s;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.search-result-item:hover {
+  background-color: #fff0fa;
+}
+
+/* Close search when clicking outside */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1040;
 }

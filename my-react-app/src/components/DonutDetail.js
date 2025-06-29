@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import donuts, { categoryTags } from './Donuts';
 import DonutCarousel from './DonutCarousel';
+import AddToCartButton from './AddToCartButton';
 
 const DonutDetail = () => {
   const { id } = useParams();
@@ -25,14 +26,22 @@ const DonutDetail = () => {
           <p>{donut.description || "No description available."}</p>
           <h4>${donut.price.toFixed(2)}</h4>
           {donut.tags?.length > 0 && (
-            <p className="text-muted">Tags: {donut.tags.join(", ")}</p>
+            <div className="mb-3">
+              {donut.tags.map((tag, index) => (
+                <span key={index} className="badge bg-pink me-2">
+                  {tag}
+                </span>
+              ))}
+            </div>
           )}
+          <div className="mt-4">
+            <AddToCartButton donut={donut} />
+          </div>
         </div>
       </div>
 
-        <h3 className="text-center mb-4">Discover More {categoryTag} Donuts</h3>
-        <DonutCarousel currentId={donut.id} tag={categoryTag} />
-
+      <h3 className="text-center mb-4">Discover More {categoryTag} Donuts</h3>
+      <DonutCarousel currentId={donut.id} tag={categoryTag} />
     </div>
   );
 };
