@@ -6,13 +6,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
-import DonutGrid from './components/DonutGrid';
 import DonutDetail from './components/DonutDetail';
 import CategoryPage from './components/CategoryPage';
 import Footer from './components/Footer';
 import { CartProvider } from './context/CartContext';
 import Cart from './components/Cart';
 import SearchPage from './components/SearchPage'; 
+import AllDonutsPage from './components/AllDonutsPage'
 
 const App = () => {
   return (
@@ -25,7 +25,7 @@ const App = () => {
             <div className="container">
               <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/donuts" element={<DonutGrid />} />
+                <Route path="/donuts" element={<AllDonutsPage />} />
                 <Route path="/donut/:id" element={<DonutDetail />} />
                 <Route path="/category/:tag" element={<CategoryPage />} />
                 <Route path="/search" element={<SearchPage />} /> 

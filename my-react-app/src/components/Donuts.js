@@ -1,6 +1,6 @@
-export const categoryTags = ["Seasonal", "Fruity", "Classic", "Bestsellers"];
-export const filterTags = ["Seasonal", "Fruity", "Chocolate", "Classic", "Nuts", "Gluten", "Dairy", "Sugar-Free"];
-export const seasonalTags = ["Summer", "Fall", "Sanrio", "Matcha"]
+export const categoryTags = ["Seasonal", "Classic", "Bestsellers"];
+export const filterTags = ["Fruity", "Chocolate", "Vanilla", "Nuts", "Sprinkles", "Cream-Filled"];
+export const seasonalTags = ["Summer", "Fall", "Sanrio", "Matcha", "Valentine", "Oreo"]
 
 const donuts = [
 
@@ -19,7 +19,7 @@ const donuts = [
         image: "/donuts/blue.png",
         price: 4.50,
         description: "Vanilla donut with blue and white sprinkles.",
-        tags: ["Sprinkles"],
+        tags: ["Sprinkles", "Vanilla"],
     },
 
     {
@@ -75,8 +75,8 @@ const donuts = [
         name: "Chocolate Sprinkles",
         image: "/donuts/chocosprinkles.png",
         price: 4.50,
-        description: "",
-        tags: ["Chocolate", "Sprinkles"],
+        description: "Vanilla donut covered in chocolate sprinkles",
+        tags: ["Chocolate", "Sprinkles", "Vanilla"],
     },
 
 
@@ -86,7 +86,7 @@ const donuts = [
         image: "/donuts/cinnamonapple.png",
         price: 4.50,
         description: "A delicious donut filled with apple cinnamon filling, perfect for Fall.",
-        tags: ["CreamFilled", "Seasonal", "Fall", "Fruity"],
+        tags: ["Cream-Filled", "Seasonal", "Fall", "Fruity"],
     },
 
     {
@@ -113,7 +113,7 @@ const donuts = [
         image: "/donuts/classicmatcha.png",
         price: 4.50,
         description: "Matcha donut covered in matcha creme glaze.",
-        tags: ["Matcha", "Bestsellers"],
+        tags: ["Matcha", "Bestsellers", "Seasonal"],
     },
 
     {
@@ -131,7 +131,7 @@ const donuts = [
         image: "/donuts/classicstrawberrysprinkle.png",
         price: 4.50,
         description: "Our classic strawberry sprinkle donut.",
-        tags: ["Classic", "Sprinkle", "Fruity"],
+        tags: ["Classic", "Sprinkles", "Fruity"],
     },
 
     {
@@ -167,26 +167,26 @@ const donuts = [
     image: "/donuts/heartshape.png",
     price: 4.50,
     description: "Heart-shaped donut with strawberry glaze.",
-    tags: ["Seasonal", "Valentine", "Bestsellers"],
-},
+    tags: ["Seasonal", "Valentine", "Bestsellers", "Fruity"],
+    },
 
-{
+    {
     id: 19, 
     name: "Honey Cruller",
     image: "/donuts/honeycruller.png",
     price: 4.50,
     description: "Classic twisted donut glazed with honey.",
     tags: ["Classic"],
-},
+    },
 
-{
+    {
     id: 20, 
     name: "Honey Lavender",
     image: "/donuts/honeylavender.png",
     price: 4.50,
     description: "Donut with honey glaze and lavender flavor.",
     tags: ["Valentine", "Seasonal"],
-},
+    },
 
 {
     id: 21, 
@@ -203,7 +203,7 @@ const donuts = [
     image: "/donuts/matchacrumble.png",
     price: 4.50,
     description: "Matcha donut with a sweet crumble topping.",
-    tags: ["Matcha", "Bestsellers"],
+    tags: ["Matcha", "Bestsellers", "Seasonal"],
 },
 
 {
@@ -211,8 +211,8 @@ const donuts = [
     name: "Matcha Flower",
     image: "/donuts/matchaflower.png",
     price: 4.50,
-    description: "Matcha donut decorated with flower designs.",
-    tags: ["Matcha"],
+    description: "A flower-shaped matcha donut.",
+    tags: ["Matcha", "Seasonal"],
 },
 
 {
@@ -221,7 +221,7 @@ const donuts = [
     image: "/donuts/matchaglaze.png",
     price: 4.50,
     description: "Classic donut with matcha glaze.",
-    tags: ["Matcha"],
+    tags: ["Matcha", "Seasonal"],
 },
 
 {
@@ -230,7 +230,7 @@ const donuts = [
     image: "/donuts/matchaicing.png",
     price: 4.50,
     description: "Matcha donut topped with almond icing.",
-    tags: ["Matcha", "Nut"],
+    tags: ["Matcha", "Nuts", "Seasonal"],
 },
 
 {
@@ -247,8 +247,8 @@ const donuts = [
     name: "M&M",
     image: "/donuts/mnm.png",
     price: 4.50,
-    description: "Chocolate donut topped with M&M's.",
-    tags: ["Chocolate", "Sprinkle", "Seasonal", "Summer"],
+    description: "Vanilla donut topped with M&M's.",
+    tags: ["Vanilla", "Chocolate", "Sprinkles", "Seasonal", "Summer"],
 },
 
 {
@@ -257,7 +257,7 @@ const donuts = [
     image: "/donuts/newyorkcheesecake.png",
     price: 4.50,
     description: "Creamy cheesecake-filled donut.",
-    tags: ["Classic"],
+    tags: ["Classic", "Cream-Filled"],
 },
 
 {
@@ -266,7 +266,7 @@ const donuts = [
     image: "/donuts/nut.png",
     price: 4.50,
     description: "Donut filled with almond-flavored creme.",
-    tags: ["Nut"],
+    tags: ["Nut", "Cream-Filled"],
 },
 
 {
@@ -284,7 +284,7 @@ const donuts = [
     image: "/donuts/nutvanilla.png",
     price: 4.50,
     description: "Vanilla donut topped with nuts.",
-    tags: ["Nut"],
+    tags: ["Nut", "Vanilla"],
 },
 
 {
@@ -329,7 +329,7 @@ const donuts = [
     image: "/donuts/pink.png",
     price: 4.50,
     description: "Pink-glazed donut with sprinkles.",
-    tags: ["Sprinkles"],
+    tags: ["Sprinkles", "Valentine", "Seasonal"],
 },
 
 {
@@ -338,7 +338,7 @@ const donuts = [
     image: "/donuts/pinkraspberry.png",
     price: 4.50,
     description: "Pink donut with raspberry glaze.",
-    tags: ["Fruity", "Seasonal", "Summer"],
+    tags: ["Fruity", "Seasonal", "Summer", "Valentine"],
 },
 
 {
@@ -347,7 +347,7 @@ const donuts = [
     image: "/donuts/polkadot.png",
     price: 4.50,
     description: "Chocolate donut with polka dot design.",
-    tags: ["Chocolate", "Bestsellers"],
+    tags: ["Chocolate", "Bestsellers", "Valentine", "Seasonal"],
 },
 
 {
@@ -356,7 +356,7 @@ const donuts = [
     image: "/donuts/powdered.png",
     price: 4.50,
     description: "Classic powdered donut with raspberry filling.",
-    tags: ["Classic", "Fruity", "CreamFilled"],
+    tags: ["Classic", "Fruity", "Cream-Filled", "Valentine", "Seasonal"],
 },
 
 {
@@ -383,7 +383,7 @@ const donuts = [
     image: "/donuts/raspberrychoco.png",
     price: 4.50,
     description: "Raspberry donut with chocolate cream filling.",
-    tags: ["Fruity", "Bestsellers"],
+    tags: ["Fruity", "Bestsellers", "Cream-Filled", "Valentine", "Chocolate", "Seasonal"],
 },
 
 {
@@ -392,7 +392,7 @@ const donuts = [
     image: "/donuts/raspberryfilled.png",
     price: 4.50,
     description: "Donut filled with raspberry jam.",
-    tags: ["Fruity", "CreamFilled"],
+    tags: ["Fruity", "Cream-Filled"],
 },
 
 {
@@ -401,7 +401,7 @@ const donuts = [
     image: "/donuts/raspberryglaze.png",
     price: 4.50,
     description: "Donut with strawberry and vanilla glaze.",
-    tags: ["Fruity"],
+    tags: ["Fruity", "Vanilla", "Valentine", "Seasonal"],
 },
 
 {
@@ -410,7 +410,7 @@ const donuts = [
     image: "/donuts/raspberryvanilla.png",
     price: 4.50,
     description: "Donut with raspberry and vanilla icing.",
-    tags: ["Fruity"],
+    tags: ["Fruity", "Valentine", "Vanilla", "Seasonal"],
 },
 
 {
@@ -428,7 +428,7 @@ const donuts = [
     image: "/donuts/sanrio1.png",
     price: 4.50,
     description: "Hello Kitty-themed vanilla donut.",
-    tags: ["Seasonal", "Sanrio", "Bestsellers"],
+    tags: ["Seasonal", "Sanrio", "Bestsellers", "Vanilla"],
 },
 
 {
@@ -455,7 +455,7 @@ const donuts = [
     image: "/donuts/taro.png",
     price: 4.50,
     description: "Donut flavored with sweet taro.",
-    tags: ["Unique"],
+    tags: ["Fruity"],
 },
 
 {
@@ -464,7 +464,7 @@ const donuts = [
     image: "/donuts/vanillaglaze.png",
     price: 4.50,
     description: "Vanilla donut with a touch of cinnamon.",
-    tags: ["Classic", "Spiced"],
+    tags: ["Classic", "Fall", "Vanilla", "Seasonal"],
 },
 ]
 

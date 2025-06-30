@@ -84,7 +84,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  z-index: 1060;
   display: flex;
   justify-content: flex-end;
 }
@@ -142,8 +142,6 @@
   }
 }
 
-/* Add these to your existing App.css */
-
 .search-container {
   z-index: 1000;
 }
@@ -162,7 +160,6 @@
   background-color: #fff0fa;
 }
 
-/* Add responsive styles */
 @media (max-width: 768px) {
   .search-container {
     position: fixed !important;

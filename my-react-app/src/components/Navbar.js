@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { categoryTags } from './Donuts';
-import donutsData from './Donuts'; 
+import donutsData, { categoryTags, seasonalTags } from './Donuts';
 import { useCart } from '../context/CartContext';
 import '../App.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { cartItemCount, toggleCart } = useCart();
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [showSearch, setShowSearch] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [allDonuts, setAllDonuts] = useState(donutsData); 
+  const [showSearch, setShowSearch] = useState(false);
+  const [showSeasonal, setShowSeasonal] = useState(false);
   const searchRef = useRef();
 
-  
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (searchRef.current && !searchRef.current.contains(e.target)) {
@@ -25,24 +24,23 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-
   useEffect(() => {
     if (searchQuery.trim() === '') {
       setSearchResults([]);
       return;
     }
 
-    const results = allDonuts.filter(donut => {
-      const query = searchQuery.toLowerCase();
+    const results = donutsData.filter(donut => {
+      const q = searchQuery.toLowerCase();
       return (
-        donut.name.toLowerCase().includes(query) ||
-        donut.description.toLowerCase().includes(query) ||
-        (donut.tags && donut.tags.some(tag => tag.toLowerCase().includes(query)))
+        donut.name.toLowerCase().includes(q) ||
+        donut.description?.toLowerCase().includes(q) ||
+        donut.tags?.some(tag => tag.toLowerCase().includes(q))
       );
     }).slice(0, 5);
 
     setSearchResults(results);
-  }, [searchQuery, allDonuts]);
+  }, [searchQuery]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -54,19 +52,18 @@ const Navbar = () => {
     }
   };
 
-  const handleResultClick = (donutId) => {
-    navigate(`/donut/${donutId}`);
+  const handleResultClick = (id) => {
+    navigate(`/donut/${id}`);
     setShowSearch(false);
     setSearchQuery('');
     setSearchResults([]);
   };
 
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-light shadow-sm sticky-top position-relative"
-      style={{ height: '70px', backgroundColor: '#fff0fa'}}
-    >
+    <nav className="navbar navbar-expand-lg navbar-light shadow-sm sticky-top" style={{ height: '70px', backgroundColor: '#fff0fa' }}>
       <div className="container d-flex justify-content-between align-items-center position-relative">
+
+        {/* LEFT SECTION */}
         <div className="d-flex align-items-center">
           <Link to="/" className="navbar-logo me-3">
             <img src="/logo.png" alt="Logo Icon" style={{ height: '60px' }} />
@@ -79,39 +76,61 @@ const Navbar = () => {
               </NavLink>
             </li>
 
+            {/* Categories Dropdown */}
             <li className="nav-item dropdown position-static">
               <div className="dropdown-hover">
-                <a
-                  className="nav-link dropdown-toggle hover-pink"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  onClick={(e) => e.preventDefault()}
-                >
+                <a className="nav-link dropdown-toggle hover-pink" href="#" onClick={(e) => e.preventDefault()}>
                   Categories
                 </a>
-                <ul className="dropdown-menu show-on-hover" aria-labelledby="navbarDropdown">
-                  {categoryTags.map((tag, idx) => (
-                    <li key={idx}>
-                      <Link to={`/category/${tag}`} className="dropdown-item hover-pink">
-                        {tag}
-                      </Link>
-                    </li>
-                  ))}
+                <ul className="dropdown-menu p-2 show-on-hover" style={{ minWidth: '220px' }}>
+                  {/* Classic and Bestsellers */}
+                  {categoryTags
+                    .filter(tag => tag !== "Seasonal")
+                    .map((tag, idx) => (
+                      <li key={idx}>
+                        <Link to={`/category/${tag}`} className="dropdown-item hover-pink">
+                          {tag}
+                        </Link>
+                      </li>
+                    ))}
+
+                  {/* Seasonal Submenu */}
+                  <li>
+                    <div
+                      className="dropdown-item dropdown-toggle hover-pink"
+                      onClick={() => setShowSeasonal(!showSeasonal)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Seasonal
+                    </div>
+                    {showSeasonal && (
+                      <ul className="list-unstyled ps-3">
+                        {seasonalTags.map((subtag, i) => (
+                          <li key={i}>
+                            <Link to={`/category/${subtag}`} className="dropdown-item hover-pink ps-3">
+                              {subtag} Collection
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
                 </ul>
               </div>
             </li>
           </ul>
         </div>
 
+        {/* CENTER LOGO */}
         <div className="navbar-center position-absolute top-50 start-50 translate-middle">
           <Link to="/" className="d-inline-block">
             <img src="/name.png" alt="The Donut Atelier" style={{ height: '60px' }} />
           </Link>
         </div>
 
+        {/* RIGHT: Search + Cart */}
         <div className="d-flex align-items-center">
-
+          {/* Search */}
           <div className="position-relative" ref={searchRef}>
             <i
               className="bi bi-search fs-4 mx-3 text-pink"
@@ -123,7 +142,7 @@ const Navbar = () => {
                 setSearchResults([]);
               }}
             ></i>
-            
+
             {showSearch && (
               <div className="search-container position-absolute end-0 mt-2">
                 <form onSubmit={handleSearchSubmit} className="d-flex">
@@ -137,7 +156,6 @@ const Navbar = () => {
                     style={{ width: '300px', padding: '10px 20px' }}
                   />
                 </form>
-                
                 {searchResults.length > 0 && (
                   <div className="search-results bg-white rounded shadow mt-1 overflow-hidden">
                     {searchResults.map(donut => (
@@ -155,7 +173,8 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          
+
+          {/* Cart */}
           <div
             className="position-relative text-pink"
             style={{ cursor: 'pointer' }}
