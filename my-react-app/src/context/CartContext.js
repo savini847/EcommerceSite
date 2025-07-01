@@ -41,6 +41,10 @@ export const CartProvider = ({ children }) => {
     setIsCartOpen(!isCartOpen);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   const cartItemCount = cart.reduce((count, item) => count + item.quantity, 0);
 
@@ -54,7 +58,8 @@ export const CartProvider = ({ children }) => {
         isCartOpen,
         toggleCart,
         cartTotal,
-        cartItemCount
+        cartItemCount,
+        clearCart 
       }}
     >
       {children}

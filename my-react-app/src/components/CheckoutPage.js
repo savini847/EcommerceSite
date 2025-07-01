@@ -30,7 +30,9 @@ const CheckoutPage = () => {
     setTimeout(() => {
       setIsProcessing(false);
       setOrderSuccess(true);
-      clearCart();
+      if (clearCart && typeof clearCart === 'function') {
+        clearCart();
+      }
     }, 2000);
   };
 
