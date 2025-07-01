@@ -13,6 +13,7 @@ import { CartProvider } from './context/CartContext';
 import Cart from './components/Cart';
 import SearchPage from './components/SearchPage'; 
 import AllDonutsPage from './components/AllDonutsPage'
+import CheckoutPage from './components/CheckoutPage';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
                 <Route path="/donut/:id" element={<DonutDetail />} />
                 <Route path="/category/:tag" element={<CategoryPage />} />
                 <Route path="/search" element={<SearchPage />} /> 
+                <Route path="/checkout" element={<CheckoutPage />} />
               </Routes>
             </div>
           </main>

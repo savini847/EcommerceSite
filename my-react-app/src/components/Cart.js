@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { 
@@ -10,6 +11,8 @@ const Cart = () => {
     updateQuantity, 
     cartTotal 
   } = useCart();
+  
+  const navigate = useNavigate();
 
   if (!isCartOpen) return null;
 
@@ -76,7 +79,14 @@ const Cart = () => {
             <h5>Subtotal:</h5>
             <h5>${cartTotal.toFixed(2)}</h5>
           </div>
-          <button className="btn btn-primary w-100 mt-2">
+          <button 
+            className="btn btn-primary w-100 mt-2"
+            onClick={() => {
+              toggleCart();
+              navigate('/checkout');
+            }}
+            disabled={cart.length === 0}
+          >
             Proceed to Checkout
           </button>
         </div>
