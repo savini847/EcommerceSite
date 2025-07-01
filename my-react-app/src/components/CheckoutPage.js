@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import Confetti from 'react-confetti';
 
 const CheckoutPage = () => {
   const { cart, cartTotal, clearCart } = useCart();
@@ -14,10 +15,45 @@ const CheckoutPage = () => {
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [showSurvey, setShowSurvey] = useState(false);
+  const [surveyCompleted, setSurveyCompleted] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+  const [surveyAnswers, setSurveyAnswers] = useState({
+    siteEase: '',
+    siteDesign: '',
+    siteSpeed: '',
+    productQuality: '',
+    productVariety: '',
+    productPackaging: ''
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSurveyChange = (e) => {
+    const { name, value } = e.target;
+    setSurveyAnswers(prev => ({
       ...prev,
       [name]: value
     }));
@@ -36,6 +72,192 @@ const CheckoutPage = () => {
     }, 2000);
   };
 
+  const handleSurveySubmit = (e) => {
+    e.preventDefault();
+    setSurveyCompleted(true);
+    setShowConfetti(true);
+    setTimeout(() => {
+      setShowConfetti(false);
+      navigate('/');
+    }, 5000);
+  };
+
+  if (showConfetti) {
+    return (
+      <>
+        <Confetti 
+          width={windowSize.width}
+          height={windowSize.height}
+          recycle={false}
+          numberOfPieces={500}
+          gravity={0.2}
+        />
+        <div className="container my-5">
+          <div className="row justify-content-center">
+            <div className="col-md-8 text-center">
+              <div className="alert alert-success">
+                <h4 className="alert-heading">Thank You!</h4>
+                <p>We appreciate your feedback. Enjoy your donuts!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (surveyCompleted) {
+    return (
+      <div className="container my-5">
+        <div className="row justify-content-center">
+          <div className="col-md-8 text-center">
+            <div className="alert alert-success">
+              <h4 className="alert-heading">Thank You!</h4>
+              <p>We appreciate your feedback. Enjoy your donuts!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (showSurvey) {
+    return (
+      <div className="container my-5">
+        <div className="row justify-content-center">
+          <div className="col-md-8">
+            <div className="card checkout-card">
+              <div className="card-header bg-light">
+                <h3>Customer Satisfaction Survey</h3>
+                <p className="mb-0">We'd love to hear about your experience!</p>
+              </div>
+              <div className="card-body">
+                <form onSubmit={handleSurveySubmit}>
+                  <div className="mb-4">
+                    <h5 className="text-pink">Website Experience</h5>
+                    <div className="mb-3">
+                      <label className="form-label">How easy was it to navigate our website?</label>
+                      <select 
+                        className="form-select"
+                        name="siteEase"
+                        value={surveyAnswers.siteEase}
+                        onChange={handleSurveyChange}
+                        required
+                      >
+                        <option value="">Select rating</option>
+                        <option value="5">Very Easy</option>
+                        <option value="4">Easy</option>
+                        <option value="3">Neutral</option>
+                        <option value="2">Difficult</option>
+                        <option value="1">Very Difficult</option>
+                      </select>
+                    </div>
+                    <div className="mb-3">
+                      <label className="form-label">How would you rate the design of our website?</label>
+                      <select 
+                        className="form-select"
+                        name="siteDesign"
+                        value={surveyAnswers.siteDesign}
+                        onChange={handleSurveyChange}
+                        required
+                      >
+                        <option value="">Select rating</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Good</option>
+                        <option value="3">Average</option>
+                        <option value="2">Below Average</option>
+                        <option value="1">Poor</option>
+                      </select>
+                    </div>
+                    <div className="mb-3">
+                      <label className="form-label">How would you rate the speed of our website?</label>
+                      <select 
+                        className="form-select"
+                        name="siteSpeed"
+                        value={surveyAnswers.siteSpeed}
+                        onChange={handleSurveyChange}
+                        required
+                      >
+                        <option value="">Select rating</option>
+                        <option value="5">Very Fast</option>
+                        <option value="4">Fast</option>
+                        <option value="3">Average</option>
+                        <option value="2">Slow</option>
+                        <option value="1">Very Slow</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <h5 className="text-pink">Product Experience</h5>
+                    <div className="mb-3">
+                      <label className="form-label">How would you rate the quality of our donuts?</label>
+                      <select 
+                        className="form-select"
+                        name="productQuality"
+                        value={surveyAnswers.productQuality}
+                        onChange={handleSurveyChange}
+                        required
+                      >
+                        <option value="">Select rating</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Good</option>
+                        <option value="3">Average</option>
+                        <option value="2">Below Average</option>
+                        <option value="1">Poor</option>
+                      </select>
+                    </div>
+                    <div className="mb-3">
+                      <label className="form-label">How would you rate our product variety?</label>
+                      <select 
+                        className="form-select"
+                        name="productVariety"
+                        value={surveyAnswers.productVariety}
+                        onChange={handleSurveyChange}
+                        required
+                      >
+                        <option value="">Select rating</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Good</option>
+                        <option value="3">Average</option>
+                        <option value="2">Below Average</option>
+                        <option value="1">Poor</option>
+                      </select>
+                    </div>
+                    <div className="mb-3">
+                      <label className="form-label">How would you rate our product packaging?</label>
+                      <select 
+                        className="form-select"
+                        name="productPackaging"
+                        value={surveyAnswers.productPackaging}
+                        onChange={handleSurveyChange}
+                        required
+                      >
+                        <option value="">Select rating</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Good</option>
+                        <option value="3">Average</option>
+                        <option value="2">Below Average</option>
+                        <option value="1">Poor</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary w-100 py-3"
+                  >
+                    Submit Survey
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (orderSuccess) {
     return (
       <div className="container my-5">
@@ -46,9 +268,15 @@ const CheckoutPage = () => {
               <p>Thank you for your purchase. Your donuts are on their way!</p>
               <button 
                 className="btn btn-primary mt-3"
+                onClick={() => setShowSurvey(true)}
+              >
+                Take Our Survey
+              </button>
+              <button 
+                className="btn btn-outline-secondary mt-3 ms-2"
                 onClick={() => navigate('/')}
               >
-                Back to Home
+                Skip Survey
               </button>
             </div>
           </div>
@@ -85,7 +313,7 @@ const CheckoutPage = () => {
           <h2 className="mb-4">Checkout</h2>
           
           <form onSubmit={handleSubmit}>
-            <div className="card mb-4">
+            <div className="card mb-4 checkout-card">
               <div className="card-header bg-light">
                 <h5>Shipping Information</h5>
               </div>
@@ -155,7 +383,7 @@ const CheckoutPage = () => {
               </div>
             </div>
 
-            <div className="card mb-4">
+            <div className="card mb-4 checkout-card">
               <div className="card-header bg-light">
                 <h5>Payment Information</h5>
               </div>
@@ -199,7 +427,7 @@ const CheckoutPage = () => {
         </div>
 
         <div className="col-md-4">
-          <div className="card">
+          <div className="card checkout-card">
             <div className="card-header bg-light">
               <h5>Order Summary</h5>
             </div>
