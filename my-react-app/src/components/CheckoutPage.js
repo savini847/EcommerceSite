@@ -3,9 +3,40 @@ import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import Confetti from 'react-confetti';
 
+const Stepper = ({ currentStep }) => {
+  const steps = [
+    { id: 1, name: 'Personal Information' },
+    { id: 2, name: 'Shipping Address' },
+    { id: 3, name: 'Payment' },
+    { id: 4, name: 'Confirmation' }
+  ];
+
+  return (
+    <div className="stepper-wrapper mb-5">
+      <div className="stepper d-flex justify-content-between">
+        {steps.map((step, index) => (
+          <div 
+            key={step.id} 
+            className={`stepper-step ${currentStep >= step.id ? 'active' : ''}`}
+          >
+            <div className="stepper-circle">
+              {step.id}
+            </div>
+            <div className="stepper-label">{step.name}</div>
+            {index < steps.length - 1 && (
+              <div className="stepper-line"></div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const CheckoutPage = () => {
   const { cart, cartTotal, clearCart } = useCart();
   const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -66,6 +97,7 @@ const CheckoutPage = () => {
     setTimeout(() => {
       setIsProcessing(false);
       setOrderSuccess(true);
+      setCurrentStep(4);
       if (clearCart && typeof clearCart === 'function') {
         clearCart();
       }
@@ -80,6 +112,14 @@ const CheckoutPage = () => {
       setShowConfetti(false);
       navigate('/');
     }, 5000);
+  };
+
+  const nextStep = () => {
+    setCurrentStep(prev => prev + 1);
+  };
+
+  const prevStep = () => {
+    setCurrentStep(prev => prev - 1);
   };
 
   if (showConfetti) {
@@ -124,6 +164,7 @@ const CheckoutPage = () => {
   if (showSurvey) {
     return (
       <div className="container my-5">
+        <Stepper currentStep={4} />
         <div className="row justify-content-center">
           <div className="col-md-8">
             <div className="card checkout-card">
@@ -243,41 +284,23 @@ const CheckoutPage = () => {
                     </div>
                   </div>
 
-                  <button 
-                    type="submit" 
-                    className="btn btn-primary w-100 py-3"
-                  >
-                    Submit Survey
-                  </button>
+                  <div className="d-flex justify-content-between">
+                    <button 
+                      type="button" 
+                      className="btn btn-outline-secondary"
+                      onClick={() => setShowSurvey(false)}
+                    >
+                      Back to Order
+                    </button>
+                    <button 
+                      type="submit" 
+                      className="btn btn-primary"
+                    >
+                      Submit Survey
+                    </button>
+                  </div>
                 </form>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (orderSuccess) {
-    return (
-      <div className="container my-5">
-        <div className="row justify-content-center">
-          <div className="col-md-8 text-center">
-            <div className="alert alert-success">
-              <h4 className="alert-heading">Order Successful!</h4>
-              <p>Thank you for your purchase. Your donuts are on their way!</p>
-              <button 
-                className="btn btn-primary mt-3"
-                onClick={() => setShowSurvey(true)}
-              >
-                Take Our Survey
-              </button>
-              <button 
-                className="btn btn-outline-secondary mt-3 ms-2"
-                onClick={() => navigate('/')}
-              >
-                Skip Survey
-              </button>
             </div>
           </div>
         </div>
@@ -308,14 +331,14 @@ const CheckoutPage = () => {
 
   return (
     <div className="container my-5">
+      <Stepper currentStep={currentStep} />
+      
       <div className="row">
         <div className="col-md-8">
-          <h2 className="mb-4">Checkout</h2>
-          
-          <form onSubmit={handleSubmit}>
+          {currentStep === 1 && (
             <div className="card mb-4 checkout-card">
               <div className="card-header bg-light">
-                <h5>Shipping Information</h5>
+                <h5>Personal Information</h5>
               </div>
               <div className="card-body">
                 <div className="mb-3">
@@ -342,6 +365,25 @@ const CheckoutPage = () => {
                     required 
                   />
                 </div>
+                <div className="d-flex justify-content-end">
+                  <button 
+                    className="btn btn-primary"
+                    onClick={nextStep}
+                    disabled={!formData.name || !formData.email}
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {currentStep === 2 && (
+            <div className="card mb-4 checkout-card">
+              <div className="card-header bg-light">
+                <h5>Shipping Address</h5>
+              </div>
+              <div className="card-body">
                 <div className="mb-3">
                   <label htmlFor="address" className="form-label">Address</label>
                   <input 
@@ -380,50 +422,101 @@ const CheckoutPage = () => {
                     />
                   </div>
                 </div>
+                <div className="d-flex justify-content-between">
+                  <button 
+                    className="btn btn-outline-secondary"
+                    onClick={prevStep}
+                  >
+                    Back
+                  </button>
+                  <button 
+                    className="btn btn-primary"
+                    onClick={nextStep}
+                    disabled={!formData.address || !formData.city || !formData.zipCode}
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
             </div>
+          )}
 
+          {currentStep === 3 && (
+            <form onSubmit={handleSubmit}>
+              <div className="card mb-4 checkout-card">
+                <div className="card-header bg-light">
+                  <h5>Payment Information</h5>
+                </div>
+                <div className="card-body">
+                  <div className="mb-3">
+                    <label className="form-label">Card Number</label>
+                    <div className="form-control bg-light">
+                      <span className="text-muted">•••• •••• •••• 4242</span>
+                    </div>
+                    <small className="text-muted">Test card number displayed for demo purposes</small>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <label className="form-label">Expiry Date</label>
+                      <div className="form-control bg-light">
+                        <span className="text-muted">04/24</span>
+                      </div>
+                    </div>
+                    <div className="col-md-6 mb-3">
+                      <label className="form-label">CVV</label>
+                      <div className="form-control bg-light">
+                        <span className="text-muted">•••</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="alert alert-info mt-3">
+                    <i className="bi bi-info-circle me-2"></i>
+                    This is a demo store. No real payments are processed.
+                  </div>
+                </div>
+              </div>
+              
+              <div className="d-flex justify-content-between">
+                <button 
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  onClick={prevStep}
+                >
+                  Back
+                </button>
+                <button 
+                  type="submit" 
+                  className="btn btn-primary"
+                  disabled={isProcessing}
+                >
+                  {isProcessing ? 'Processing...' : `Pay $${cartTotal.toFixed(2)}`}
+                </button>
+              </div>
+            </form>
+          )}
+
+          {currentStep === 4 && (
             <div className="card mb-4 checkout-card">
-              <div className="card-header bg-light">
-                <h5>Payment Information</h5>
-              </div>
-              <div className="card-body">
-                <div className="mb-3">
-                  <label className="form-label">Card Number</label>
-                  <div className="form-control bg-light">
-                    <span className="text-muted">•••• •••• •••• 4242</span>
-                  </div>
-                  <small className="text-muted">Test card number displayed for demo purposes</small>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label">Expiry Date</label>
-                    <div className="form-control bg-light">
-                      <span className="text-muted">04/24</span>
-                    </div>
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label">CVV</label>
-                    <div className="form-control bg-light">
-                      <span className="text-muted">•••</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="alert alert-info mt-3">
-                  <i className="bi bi-info-circle me-2"></i>
-                  This is a demo store. No real payments are processed.
+              <div className="card-body text-center">
+                <div className="alert alert-success">
+                  <h4 className="alert-heading">Order Successful!</h4>
+                  <p>Thank you for your purchase. Your donuts are on their way!</p>
+                  <button 
+                    className="btn btn-primary mt-3"
+                    onClick={() => setShowSurvey(true)}
+                  >
+                    Take Our Survey
+                  </button>
+                  <button 
+                    className="btn btn-outline-secondary mt-3 ms-2"
+                    onClick={() => navigate('/')}
+                  >
+                    Skip Survey
+                  </button>
                 </div>
               </div>
             </div>
-
-            <button 
-              type="submit" 
-              className="btn btn-primary w-100 py-3"
-              disabled={isProcessing}
-            >
-              {isProcessing ? 'Processing...' : `Pay $${cartTotal.toFixed(2)}`}
-            </button>
-          </form>
+          )}
         </div>
 
         <div className="col-md-4">
