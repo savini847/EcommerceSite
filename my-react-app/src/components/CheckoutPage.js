@@ -495,54 +495,59 @@ const CheckoutPage = () => {
             </form>
           )}
 
-          {currentStep === 4 && (
-            <div className="card mb-4 checkout-card">
-              <div className="card-body text-center">
-                <div className="alert alert-success">
-                  <h4 className="alert-heading">Order Successful!</h4>
-                  <p>Thank you for your purchase. Your donuts are on their way!</p>
-                  <button 
-                    className="btn btn-primary mt-3"
-                    onClick={() => setShowSurvey(true)}
-                  >
-                    Take Our Survey
-                  </button>
-                  <button 
-                    className="btn btn-outline-secondary mt-3 ms-2"
-                    onClick={() => navigate('/')}
-                  >
-                    Skip Survey
-                  </button>
+{currentStep === 4 && (
+  <div className = "order-success-card">
+    <div className="card checkout-card" style={{ maxWidth: '600px', width: '100%' }}>
+      <div className="card-body text-center">
+        <div className="alert alert-success">
+          <h4 className="alert-heading">Order Successful!</h4>
+          <p>Thank you for your purchase. Your donuts are on their way!</p>
+          <button
+            className="btn btn-primary mt-3"
+            onClick={() => setShowSurvey(true)}
+          >
+            Take Our Survey
+          </button>
+          <button
+            className="btn btn-outline-secondary mt-3 ms-2"
+            onClick={() => navigate('/')}
+          >
+            Skip Survey
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+          </div>   
+        
+        {currentStep !==4 && (
+          <div className="col-md-4">
+            <div className="card checkout-card">
+              <div className="card-header bg-light">
+                <h5>Order Summary</h5>
+              </div>
+              <div className="card-body">
+                <ul className="list-group list-group-flush">
+                  {cart.map(item => (
+                    <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+                      <div>
+                        <h6>{item.name}</h6>
+                        <small className="text-muted">Qty: {item.quantity}</small>
+                      </div>
+                      <span>${(item.price * item.quantity).toFixed(2)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="d-flex justify-content-between mt-3">
+                  <h5>Total:</h5>
+                  <h5>${cartTotal.toFixed(2)}</h5>
                 </div>
               </div>
             </div>
-          )}
-        </div>
-
-        <div className="col-md-4">
-          <div className="card checkout-card">
-            <div className="card-header bg-light">
-              <h5>Order Summary</h5>
-            </div>
-            <div className="card-body">
-              <ul className="list-group list-group-flush">
-                {cart.map(item => (
-                  <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                      <h6>{item.name}</h6>
-                      <small className="text-muted">Qty: {item.quantity}</small>
-                    </div>
-                    <span>${(item.price * item.quantity).toFixed(2)}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="d-flex justify-content-between mt-3">
-                <h5>Total:</h5>
-                <h5>${cartTotal.toFixed(2)}</h5>
-              </div>
-            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

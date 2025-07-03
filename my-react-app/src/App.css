@@ -248,9 +248,7 @@
   flex: 1;
 }
 
-.stepper-step:last-child {
-  flex: none;
-}
+
 
 .stepper-circle {
   width: 30px;
@@ -292,4 +290,33 @@
 .stepper-step.active .stepper-label {
   color: #ff6b9d; /* Pink color */
   font-weight: bold;
+}
+
+.add-to-cart-popup {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e83e8c;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  white-space: nowrap;
+  z-index: 100;
+}
+
+.order-success-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1050;
+  padding: 20px;
 }
